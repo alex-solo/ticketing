@@ -3,6 +3,7 @@ import nats, { Stan } from 'node-nats-streaming'
 class NatsWrapper {
   private _client?: Stan //tells TS that this property might be undefined for some time
 
+  //getter. Let's you do "this.client"
   get client() {
     if (!this._client) {
       throw new Error('Cannot access NATS client before connecting')
