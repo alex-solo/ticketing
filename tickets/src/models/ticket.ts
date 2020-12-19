@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
 
 interface TicketAttrs {
   title: string
@@ -10,6 +11,7 @@ interface TicketDoc extends mongoose.Document {
   title: string
   price: number
   userId: string
+  version: number // if we kept the version key as "__v" we could just leave the TicketDoc without this line since __v property would be found in mongoose.Document and TS wouldn't complain.
 }
 
 interface TicketModel extends mongoose.Model<TicketDoc> {
@@ -40,6 +42,9 @@ const ticketSchema = new mongoose.Schema(
     },
   }
 )
+
+ticketSchema.set('versionKey', 'version')
+ticketSchema.plugin(updateIfCurrentPlugin) // will update our version for us every time a document is updated
 
 ticketSchema.statics.build = (attrs: TicketAttrs) => {
   return new Ticket(attrs)
