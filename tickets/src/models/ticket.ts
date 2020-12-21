@@ -12,6 +12,7 @@ interface TicketDoc extends mongoose.Document {
   price: number
   userId: string
   version: number // if we kept the version key as "__v" we could just leave the TicketDoc without this line since __v property would be found in mongoose.Document and TS wouldn't complain.
+  orderId?: string
 }
 
 interface TicketModel extends mongoose.Model<TicketDoc> {
@@ -31,6 +32,9 @@ const ticketSchema = new mongoose.Schema(
     userId: {
       type: String,
       required: true,
+    },
+    orderId: {
+      type: String,
     },
   },
   {

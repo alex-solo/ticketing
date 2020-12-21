@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose, { version } from 'mongoose'
 import express, { Request, Response } from 'express'
 import {
   NotFoundError,
@@ -61,6 +61,7 @@ router.post(
     // publish an event saying that an order was created
     new OrderCreatedPublisher(natsWrapper.client).publish({
       id: order.id,
+      version: order.version,
       status: order.status,
       userId: order.userId,
       expiresAt: order.expiresAt.toISOString(), // this will give us UTC time stamp. When we share time zones across services we want to provide the timestamp in a timezone agnostic way. that usually means UTC

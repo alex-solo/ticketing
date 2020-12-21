@@ -4,6 +4,7 @@ import { body } from 'express-validator'
 import {
   validateRequest,
   NotFoundError,
+  BadRequestError,
   requireAuth,
   NotAuthorizedError,
 } from '@solosphere/common'
@@ -28,6 +29,10 @@ router.put(
 
     if (!ticket) {
       throw new NotFoundError()
+    }
+
+    if (ticket.orderId) {
+      throw new BadRequestError('Cannot edit a reserved ticket')
     }
 
     if (ticket.userId !== req.currentUser!.id) {
