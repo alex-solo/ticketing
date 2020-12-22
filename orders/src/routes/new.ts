@@ -16,7 +16,7 @@ import { natsWrapper } from '../nats-wrapper'
 const router = express.Router()
 
 // we could also extract it to an environment variable or in a more complex app we can save to a database so an admin can change the expiration with in a UI or can also have different expiration times depending on user, etc.
-const EXPIRATION_WINDOW_SECONDS = 15 * 60
+const EXPIRATION_WINDOW_SECONDS = 1 * 60
 
 router.post(
   '/api/orders',
