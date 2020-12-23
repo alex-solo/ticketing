@@ -40,5 +40,10 @@
     "mongodb-memory-server": "^6.5.1",
     "supertest": "^6.0.1",
     "ts-jest": "^26.4.4"
+  },
+  "config": {
+    "mongodbMemoryServer": {
+      "version": "v4.4-latest"
+    }
   }
 }
