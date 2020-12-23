@@ -32,7 +32,7 @@ const setup = async () => {
   }
 
   // @ts-ignore
-  const msg: Messasge = {
+  const msg: Message = {
     ack: jest.fn(),
   }
 
