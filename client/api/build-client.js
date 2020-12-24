@@ -6,8 +6,7 @@ export default ({ req }) => {
     // here we are reaching into a different namespace in kubernetes, domain will be different depending on where we're reaching
 
     return axios.create({
-      baseURL:
-        'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+      baseURL: 'http://www.runningintrails.com',
       headers: req.headers,
     })
   } else {
