@@ -14,7 +14,10 @@ jobs:
       - uses: actions/checkout@v2
       - run: cd auth && docker build -t asolovie/auth .
       - name: Login to DockerHub Registry
-        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${‌{ secrets.DOCKER_USERNAME }} --password-stdin
+        run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - run: docker push asolovie/auth
       - uses: digitalocean/action-doctl@v2
         with:
