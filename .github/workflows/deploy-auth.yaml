@@ -13,10 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cd auth && docker build -t asolovie/auth .
-      - run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${‌{ secrets.DOCKER_USERNAME }} --password-stdin
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER.USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${‌{ secrets.DOCKER_USERNAME }} --password-stdin
       - run: docker push asolovie/auth
       - uses: digitalocean/action-doctl@v2
         with:
