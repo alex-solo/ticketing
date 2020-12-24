@@ -14,7 +14,7 @@ app.use(json())
 app.use(
   cookieSession({
     signed: false,
-    secure: process.env.NODE_ENV !== 'test', // only over https when true. Jest sets the environment variabel NODE_ENV to "test" when we run tests
+    secure: false, // process.env.NODE_ENV !== 'test', // only over https when true. Jest sets the environment variabel NODE_ENV to "test" when we run tests
   })
 )
 app.use(currentUser)
