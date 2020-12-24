@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cd auth && docker build -t asolovie/auth .
-      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run: echo ${{ secrets.DOCKER.USERNAME }} | docker login -u ${‌{ secrets.DOCKERHUB_USERNAME }} --password-stdin
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER.USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
